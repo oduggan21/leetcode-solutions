@@ -1,10 +1,19 @@
 class Solution:
-    def change(self, amount: int, coins: List[int]) -> int:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
         
-        dp = [0] * (amount + 1)
-        dp[0] = 1
+        total = sum(nums)
+        if abs(target) > total:
+            return 0
+        dp = [0] * ((2*(total)) + 1)
+        offset = total
+        dp[offset] = 1
 
-        for c in coins:
-            for i in range(c, amount+1):
-                dp[i] += dp[i-c]
-        return dp[amount]
+        for n in nums:
+            np = [0] * ((2*(total)) + 1)
+            for i in range(-total, total+1):
+                if dp[i + offset]:
+                    np[i+offset+n] += dp[i+offset]
+                    np[i+offset-n] += dp[i+offset]
+            dp = np
+        return dp[offset+target]
+
