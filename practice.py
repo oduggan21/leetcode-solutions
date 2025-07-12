@@ -1,2 +1,3 @@
-for i in range(-2, 5):
-	print(i)
+value = "hello"
+print(value[:1])
+
