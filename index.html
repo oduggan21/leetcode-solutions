@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Audio Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .input-section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: monospace;
+            resize: vertical;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .audio-controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .sample-data {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OpenAI PCM16 Audio Player</h1>
+        
+        <div class="input-section">
+            <label for="audioData">Base64 PCM16 Audio Data:</label>
+            <textarea id="audioData" placeholder="Paste your base64 encoded PCM16 audio data here..."></textarea>
+            <button onclick="playAudio()" id="playBtn">Play Audio</button>
+            <button onclick="stopAudio()" id="stopBtn" disabled>Stop Audio</button>
+            <button onclick="loadSampleData()" id="sampleBtn">Load Sample Data</button>
+        </div>
+        
+        <div id="status" class="status" style="display: none;"></div>
+        
+        <div class="audio-controls">
+            <audio id="audioElement" controls style="display: none;"></audio>
+        </div>
+        
+        <div class="sample-data">
+            <strong>Sample Usage:</strong><br>
+            1. Paste base64 PCM16 audio data from OpenAI into the textarea above<br>
+            2. Click "Play Audio" to decode and play the audio<br>
+            3. The audio will be converted from PCM16 to WAV format for browser compatibility
+        </div>
+    </div>
+
+    <script src="audio-player.js"></script>
+</body>
+</html>
